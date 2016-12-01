@@ -1,5 +1,9 @@
 # HISTORY
 
+## Unreleased
+
+* Add `NGX_ODOO_HOST` to change the hostname of the proxypass
+
 ## 1.0.0
 
 Initial release
