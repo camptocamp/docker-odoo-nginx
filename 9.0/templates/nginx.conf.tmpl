@@ -85,7 +85,7 @@ http {
     location /longpolling/im/poll { proxy_pass http://{{ $odoo_host }}:8072; }
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:8072; }
 
-    location ~* /web/static/ {
+    location ~* /[^/]+/static/ {
         proxy_cache_valid 200 60m;
         proxy_buffering on;
         expires 864000;
