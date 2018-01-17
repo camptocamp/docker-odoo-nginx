@@ -110,15 +110,15 @@ http {
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:8072; }
 
     location ~* /[^/]+/static/ {
-      try_files @cached;
+      try_files @cached /dev/null =404;
     }
 
     location /web/content {
-      try_files @cached;
+      try_files @cached /dev/null =404;
     }
 
     location /website/translations {
-      try_files @cached;
+      try_files @cached /dev/null =404;
     }
 
     location @cached {
