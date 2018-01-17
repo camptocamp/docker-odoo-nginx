@@ -17,7 +17,24 @@ http {
 
   sendfile on;
 
-  server_tokens on;
+  server_tokens off;
+
+  access_log off;
+  log_format json_combined escape=json '{ "time_local": "$time_iso8601", '
+   '"remote_addr": "$remote_addr", '
+   '"remote_user": "$remote_user", '
+   '"request_method": "$request_method", '
+   '"request_uri": "$request_uri", '
+   '"server_protocol": "$server_protocol", '
+   '"status": "$status", '
+   '"body_bytes_sent": "$body_bytes_sent", '
+   '"rt": "$request_time", '
+   '"uct": "$upstream_connect_time", '
+   '"uht": "$upstream_header_time", '
+   '"urt": "$upstream_response_time", '
+   '"cache": "$upstream_cache_status", '
+   '"http_referrer": "$http_referer", '
+   '"http_user_agent": "$http_user_agent" }';
 
   types_hash_max_size 1024;
   types_hash_bucket_size 512;
@@ -43,11 +60,19 @@ http {
                     application/atom+xml;
 
   proxy_redirect          off;
+
   proxy_connect_timeout   90;
   proxy_send_timeout      90;
   proxy_read_timeout      90;
+
   proxy_buffers           32 4k;
-  proxy_buffer_size       8k;
+  proxy_buffer_size       1k;
+  proxy_busy_buffers_size 8k;
+  proxy_max_temp_file_size  2048m;
+  proxy_temp_file_write_size  32k;
+
+  proxy_cache_path /tmp/nginx levels=1:2 keys_zone=one:10m inactive=60m;
+
   proxy_set_header         Host $http_host;
   proxy_set_header         X-Real-IP $remote_addr;
   proxy_set_header         X-Forward-For $proxy_add_x_forwarded_for;
@@ -61,12 +86,13 @@ http {
 
   # Configuration for the server
   server {
-
     listen 80 default;
 
     client_max_body_size 1G;
 
     add_header              Strict-Transport-Security "max-age=31536000";
+
+    access_log /var/log/nginx/access.log json_combined;
 
     location / {
       proxy_pass http://{{ $odoo_host }}:8069;
@@ -75,22 +101,39 @@ http {
       proxy_redirect        off;
 
       add_header X-Static no;
-      proxy_buffer_size 64k;
       proxy_buffering off;
-      proxy_buffers 4 64k;
-      proxy_busy_buffers_size 64k;
+      proxy_buffer_size 64k;
       proxy_intercept_errors on;
-
     }
+
     location /longpolling/im/poll { proxy_pass http://{{ $odoo_host }}:8072; }
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:8072; }
 
     location ~* /[^/]+/static/ {
-        proxy_cache_valid 200 60m;
-        proxy_buffering on;
-        expires 864000;
-        proxy_pass http://{{ $odoo_host }}:8069;
+      try_files @cached;
     }
 
+    location /web/content {
+      try_files @cached;
+    }
+
+    location /website/translations {
+      try_files @cached;
+    }
+
+    location @cached {
+      proxy_cache one;
+      proxy_cache_valid 60m;
+      proxy_cache_valid any 1m;
+      proxy_cache_revalidate on;
+      proxy_cache_use_stale error timeout updating;
+      proxy_cache_background_update on;
+      proxy_cache_lock on;
+
+      proxy_buffering on;
+      proxy_ignore_headers Set-Cookie;
+      
+      proxy_pass http://{{ $odoo_host }}:8069;
+    }
   }
 }
