@@ -111,15 +111,15 @@ http {
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:8072; }
 
     location ~* /[^/]+/static/ {
-      try_files @cached /dev/null =404;
+      try_files =404 @cached;
     }
 
     location /web/content {
-      try_files @cached /dev/null =404;
+      try_files =404 @cached;
     }
 
     location /website/translations {
-      try_files @cached /dev/null =404;
+      try_files =404 @cached;
     }
 
     location @cached {
@@ -133,6 +133,8 @@ http {
 
       proxy_buffering on;
       proxy_ignore_headers Set-Cookie;
+      proxy_cache_bypass $http_cache_control;
+      add_header X-Cache-Status $upstream_cache_status;
       
       proxy_pass http://{{ $odoo_host }}:8069;
     }
