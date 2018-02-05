@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Avoid unwanted 404 when requesting cached resources
+* Add ability to bypass cache with Cache-Control header
+
 
 ## 1.2.0
 
