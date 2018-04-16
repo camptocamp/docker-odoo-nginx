@@ -73,12 +73,8 @@ http {
 
   proxy_cache_path /tmp/nginx levels=1:2 keys_zone=one:10m inactive=60m;
 
-  proxy_set_header         Host $http_host;
-  proxy_set_header         X-Real-IP $remote_addr;
-  proxy_set_header         X-Forward-For $proxy_add_x_forwarded_for;
-  # when redirecting to https:
-  # proxy_set_header         X-Forwarded-Proto https;
-  proxy_set_header         X-Forwarded-Host $http_host;
+  include /etc/nginx/proxy_headers.conf;
+
   proxy_headers_hash_bucket_size 64;
 
   # List of application servers
@@ -141,6 +137,15 @@ http {
 
       proxy_cache_bypass $http_cache_control;
       add_header X-Cache-Status $upstream_cache_status;
+
+      # Forward If-None-Match (which contains the ETag), so Odoo can decide
+      # to return a 304 instead of the content. Nginx would have returned a 304
+      # anyway, but we spare some traffic between odoo and nginx.
+      proxy_set_header If-None-Match $http_if_none_match; 
+
+      # there is no inheritance of proxy_set_header, as soon as we define one at a level,
+      # we need to redefine all
+      include /etc/nginx/proxy_headers.conf;
       
       proxy_pass http://{{ $odoo_host }}:8069;
     }
