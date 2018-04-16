@@ -132,7 +132,13 @@ http {
       proxy_cache_lock on;
 
       proxy_buffering on;
+
+      # remove the cookie from the cached payload
+      proxy_hide_header Set-Cookie;
+      # ensure that caching is done by ignoring set-cookie
       proxy_ignore_headers Set-Cookie;
+      proxy_set_header Cookie "";
+
       proxy_cache_bypass $http_cache_control;
       add_header X-Cache-Status $upstream_cache_status;
       
