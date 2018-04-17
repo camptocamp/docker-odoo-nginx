@@ -146,7 +146,7 @@ http {
       # there is no inheritance of proxy_set_header, as soon as we define one at a level,
       # we need to redefine all
       include /etc/nginx/proxy_headers.conf;
-      
+
       proxy_pass http://{{ $odoo_host }}:8069;
     }
   }
