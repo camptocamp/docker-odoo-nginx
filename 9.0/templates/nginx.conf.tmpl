@@ -110,7 +110,9 @@ http {
       try_files =404 @cached;
     }
 
-    location /web/content {
+    # warning: /web/content reads ir.attachment, it would not be safe to
+    # cache other files than .js / .css which can depend on users rights
+    location ~* ^/web/content/.+\.(js|css)$ {
       try_files =404 @cached;
     }
 
