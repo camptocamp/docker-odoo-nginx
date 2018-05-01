@@ -116,10 +116,6 @@ http {
       try_files =404 @cached;
     }
 
-    location /website/translations {
-      try_files =404 @cached;
-    }
-
     location @cached {
       proxy_cache one;
       proxy_cache_valid 60m;
