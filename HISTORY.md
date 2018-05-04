@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## 1.2.3
+
+Upgrade!
+
+1.2.0-1.2.2 were all subjects to issues with the cache.
+
+This version fixes an issue in 1.2.2 with attachments, which could not be
+downloaded due to the cookie not being passed through /web/content.
+
+It also fixes an error when getting /website/translations, this endpoint is not
+cached anymore.
+
+
 ## 1.2.2
 
 Upgrade!
