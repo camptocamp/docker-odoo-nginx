@@ -20,21 +20,21 @@ http {
   server_tokens off;
 
   access_log off;
-  log_format json_combined escape=json '{ "time_local": "$time_iso8601", '
-   '"remote_addr": "$remote_addr", '
-   '"remote_user": "$remote_user", '
-   '"request_method": "$request_method", '
-   '"request_uri": "$request_uri", '
-   '"server_protocol": "$server_protocol", '
-   '"status": "$status", '
-   '"body_bytes_sent": "$body_bytes_sent", '
-   '"rt": "$request_time", '
-   '"uct": "$upstream_connect_time", '
-   '"uht": "$upstream_header_time", '
-   '"urt": "$upstream_response_time", '
+  log_format json_combined escape=json '{ "timestamp": "$time_iso8601", '
+   '"clientip": "$remote_addr", '
+   '"host": "$host", '
+   '"auth": "$remote_user", '
+   '"verb": "$request_method", '
+   '"request": "$request_uri", '
+   '"httpversion": "$server_protocol", '
+   '"response": "$status", '
+   '"bytes": "$body_bytes_sent", '
+   '"time_request": "$request_time", '
+   '"time_backend_connect": "$upstream_connect_time", '
+   '"time_backend_response": "$upstream_response_time", '
    '"cache": "$upstream_cache_status", '
-   '"http_referrer": "$http_referer", '
-   '"http_user_agent": "$http_user_agent" }';
+   '"referrer": "$http_referer", '
+   '"agent": "$http_user_agent" }';
 
   types_hash_max_size 1024;
   types_hash_bucket_size 512;
