@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 1.3.0
+
+* Change log keys to match apache's keys
+
+The goal is to have the same keys for Apache and Nginx so we can have
+similar logstash configuration and kibana boards.
+All the keys share the Apache's ones but the "time_*" which are the same
+than the HAproxy's ones, because we don't have them in Apache.
+
+
 ## 1.2.3
 
 Upgrade!
