@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Output the following log keys with numeric values: response, bytes,
+  time_request, time_backend_connect, time_backend_response
+
 ## 1.3.0
 
 * Change log keys to match apache's keys
