@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.4.0
+
 * Output the following log keys with numeric values: response, bytes,
   time_request, time_backend_connect, time_backend_response
 
