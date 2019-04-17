@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 1.5.0
+
+* Switch to alpine as base image
 * Fix empty responses sent by nginx which caches a 304 response with 0 bytes
   from the backend instead of the last 200 response.
 

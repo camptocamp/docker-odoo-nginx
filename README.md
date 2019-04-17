@@ -2,7 +2,7 @@
 
 An image that includes a configuration file set up to run with Odoo.
 
-The configuration file should work from Odoo 8.0 to 11.0
+The configuration file should work from Odoo 8.0 to 12.0 and up.
 
 ## Configuration
 
