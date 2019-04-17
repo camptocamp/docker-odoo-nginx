@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fix empty responses sent by nginx which caches a 304 response with 0 bytes
+  from the backend instead of the last 200 response.
+
 ## 1.4.0
 
 * Output the following log keys with numeric values: response, bytes,
