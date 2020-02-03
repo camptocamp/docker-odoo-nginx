@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Mute healthcheck query logging
+
 ## 1.5.0
 
 * Switch to alpine as base image

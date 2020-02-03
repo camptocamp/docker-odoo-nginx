@@ -106,6 +106,12 @@ http {
     location /longpolling/im/poll { proxy_pass http://{{ $odoo_host }}:8072; }
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:8072; }
 
+    location /monitoring/status {
+      proxy_pass http://{{ $odoo_host }}:8069;
+      access_log off;
+      log_not_found off;
+    }
+
     location ~* /[^/]+/static/ {
       try_files =404 @cached;
     }
