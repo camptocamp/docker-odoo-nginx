@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.6.0
+
 * Mute healthcheck query logging
 
 ## 1.5.0
