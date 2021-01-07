@@ -36,6 +36,13 @@ http {
    '"referrer": "$http_referer", '
    '"agent": "$http_user_agent" }';
 
+  /*
+  Default value '4 8k' is raising a '414 Request-URI Too Large' error
+  when '/web/webclient/translations/' is requested with a lot of module names
+  as GET parameters (performed on user login), rendering a blank page.
+  */
+  large_client_header_buffers 4 12k;
+
   types_hash_max_size 1024;
   types_hash_bucket_size 512;
 
