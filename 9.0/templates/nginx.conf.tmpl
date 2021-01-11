@@ -36,11 +36,10 @@ http {
    '"referrer": "$http_referer", '
    '"agent": "$http_user_agent" }';
 
-  /*
-  Default value '4 8k' is raising a '414 Request-URI Too Large' error
-  when '/web/webclient/translations/' is requested with a lot of module names
-  as GET parameters (performed on user login), rendering a blank page.
-  */
+  #Default value '4 8k' is raising a '414 Request-URI Too Large' error
+  #when '/web/webclient/translations/' is requested with a lot of module names
+  #as GET parameters (performed on user login), rendering a blank page.
+
   large_client_header_buffers 4 12k;
 
   types_hash_max_size 1024;
@@ -109,6 +108,26 @@ http {
       proxy_busy_buffers_size 64k;
       proxy_intercept_errors on;
     }
+   {{ if getenv "NGX_ODOO_EXTRA_LOCATION" }}
+    {{ $odoo_extra_location := getenv "NGX_ODOO_EXTRA_LOCATION" }}
+    {{range jsonArray $odoo_extra_location}}
+    location {{.}} {
+      proxy_pass http://{{ $odoo_host }}:8069;
+      proxy_read_timeout    6h;
+      proxy_connect_timeout 5s;
+      proxy_redirect        off;
+      {{ if getenv "NGX_HTPASSWD" }}
+      auth_basic "Odoo extra location restricted";
+      auth_basic_user_file /etc/nginx/htpasswd;
+      {{ end }}
+      add_header X-Static no;
+      proxy_buffering off;
+      proxy_buffer_size 64k;
+      proxy_busy_buffers_size 64k;
+      proxy_intercept_errors on;
+    }
+   {{ end }}
+   {{ end }}
 
     location /longpolling/im/poll { proxy_pass http://{{ $odoo_host }}:8072; }
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:8072; }
