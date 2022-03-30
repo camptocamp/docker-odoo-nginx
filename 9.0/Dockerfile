@@ -9,6 +9,8 @@ COPY conf.d /etc/confd/conf.d
 COPY templates /etc/confd/templates
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
+VOLUME ["/var/cache/nginx"]
+
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ENV NGX_ODOO_HOST=odoo
