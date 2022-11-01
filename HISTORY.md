@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.8.0
+
+* add websock location for odoo 16.0 
+
 ## 1.6.0
 
 * Mute healthcheck query logging
