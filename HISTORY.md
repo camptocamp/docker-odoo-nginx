@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.8.1
+
+* add configurable longpolling port (default: 8072) 
+
 ## 1.8.0
 
 * add websock location for odoo 16.0 

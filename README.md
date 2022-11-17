@@ -11,6 +11,11 @@ The configuration file should work from Odoo 8.0 to 12.0 and up.
 By default, nginx is configured to proxy pass on the host named "odoo".
 This can be changed with the environment variable `NGX_ODOO_HOST`.
 
+### Odoo long polling port 
+
+By default, nginx is configured to root longpolling url on port 8072.
+This can be changed with the environment variable `NGX_ODOO_LONGPOLLING`
+
 ### HTTP accesses
 
 Custom access allow/deny can be configured using the environment variable `NGX_HTTP_ACCESS` with using a multiline content such as:
