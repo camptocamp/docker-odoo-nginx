@@ -14,5 +14,6 @@ VOLUME ["/var/cache/nginx"]
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ENV NGX_ODOO_HOST=odoo
+ENV NGX_ODOO_LONGPOLLING_PORT=8072
 
 CMD ["nginx", "-g", "daemon off;"]
