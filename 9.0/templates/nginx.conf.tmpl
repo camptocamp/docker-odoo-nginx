@@ -86,11 +86,7 @@ http {
   # List of application servers
   {{ $odoo_host := getenv "NGX_ODOO_HOST" }}
   # get port for longpolling
-  {{ if getenv "NGX_ODOO_LONGPOLLING_PORT" }}
-    {{ $odoo_longpolling_port :=  getenv "NGX_ODOO_LONGPOLLING_PORT" }}
-  {{ else }}
-    {{ $odoo_longpolling_port := 8072 }}
-  {{ end }}
+  {{ $odoo_longpolling_port := getenv "NGX_ODOO_LONGPOLLING_PORT" }}
   # Configuration for the server
   server {
     listen 80 default;
