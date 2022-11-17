@@ -1,6 +1,9 @@
 # HISTORY
 
 ## Unreleased
+## 1.8.2
+
+* Fix longpolling env get 
 
 ## 1.8.1
 
