@@ -1,6 +1,11 @@
 # HISTORY
 
 ## Unreleased
+
+## 1.8.3
+
+* Fix json logs 
+
 ## 1.8.2
 
 * Fix longpolling env get 
