@@ -108,6 +108,9 @@ http {
       proxy_buffer_size 64k;
       proxy_busy_buffers_size 64k;
       proxy_intercept_errors on;
+      {{ if getenv "NGX_ODOO_SECURE_COOKIES" }}
+      proxy_cookie_path / "/; Secure";
+      {{end}}
     }
    {{ if getenv "NGX_ODOO_EXTRA_LOCATION" }}
     {{ $odoo_extra_location := getenv "NGX_ODOO_EXTRA_LOCATION" }}
