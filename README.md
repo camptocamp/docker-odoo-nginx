@@ -54,3 +54,8 @@ set the result in the variable 'NGX_HTPASSWD' ex:
 ```
 vrenaville:$apr1$lDdea9Jt$DAJQG0W1s4JEuuVQQxiur.
 ```
+
+### Secure cookies
+
+If you want all cookies to be have the Secure attribute, then you can set the
+environment variable NGX_ODOO_SECURE_COOKIES to 1.
