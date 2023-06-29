@@ -14,7 +14,7 @@ echo ${NGX_SPECIFIC_SERVER_CONFIG:-"#NO specific configuration defined"} > /etc/
 if [[ -n "${NGX_PROMETHEUS_EXPORTER}" ]]
 then
     echo "access_log \"/var/log/nginx/access_prometheus.log\" prometheus_exporter;" > /etc/nginx/prometheus_eporter.conf
-    cat /etc/nginx/prometheus_eporter.conf
+    cat /etc/prometheus-nginxlog-exporter.hcl
     /usr/local/bin/prometheus-nginxlog-exporter -config-file /etc/prometheus-nginxlog-exporter.hcl &
 else
     touch /etc/nginx/prometheus_eporter.conf
