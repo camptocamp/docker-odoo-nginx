@@ -13,7 +13,7 @@ RUN apk add logrotate
 
 WORKDIR /tmp
 RUN wget https://github.com/martin-helmich/prometheus-nginxlog-exporter/releases/download/v1.10.0/prometheus-nginxlog-exporter_1.10.0_linux_amd64.tar.gz
-RUN tar xvzfp prometheus-nginxlog-exporter_1.10.0_linux_arm64.tar.gz
+RUN tar xvzfp prometheus-nginxlog-exporter_1.10.0_linux_amd64.tar.gz
 RUN mv /tmp/prometheus-nginxlog-exporter /usr/local/bin/
 RUN rm -rf /tmp/prometheus-nginxlog-exporter /tmp/prometheus-nginxlog-exporter_1.10.0_linux_arm64.tar.gz
 WORKDIR /
