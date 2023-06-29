@@ -77,7 +77,7 @@ http {
   proxy_max_temp_file_size  2048m;
   proxy_temp_file_write_size  64k;
 
-  proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=one:10m inactive=60m;
+  proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=one:100m inactive=60m;
 
   include /etc/nginx/proxy_headers.conf;
 
@@ -147,6 +147,8 @@ http {
     location ~* /[^/]+/static/ {
       try_files =404 @cached;
     }
+
+    include /etc/nginx/specific_cache.conf;
 
     # warning: /web/content reads ir.attachment, it would not be safe to
     # cache other files than .js / .css which can depend on users rights
