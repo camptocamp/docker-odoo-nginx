@@ -144,6 +144,12 @@ http {
       log_not_found off;
     }
 
+    location /documents/pdf_content {
+      proxy_pass http://{{ $odoo_host }}:8069;
+      max_ranges 0;
+      proxy_force_ranges on;          
+    }
+
     location ~* /[^/]+/static/ {
       try_files =404 @cached;
     }
