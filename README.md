@@ -11,10 +11,25 @@ The configuration file should work from Odoo 8.0 to 12.0 and up.
 By default, nginx is configured to proxy pass on the host named "odoo".
 This can be changed with the environment variable `NGX_ODOO_HOST`.
 
+### Proxy cache size
+
+By default, nginx is configured to proxy cahce of 10m.
+This can be changed with the environment variable `NGX_CACHE_SIZE`.
+
+
 ### Odoo long polling port 
 
 By default, nginx is configured to root longpolling url on port 8072.
 This can be changed with the environment variable `NGX_ODOO_LONGPOLLING`
+
+### Odoo pdfcontent issue
+
+In some casesthe pdfjs cannot compute the byte_content
+correctly, to fix the issue, we deactivate this issue on nginx
+(More info: https://github.com/camptocamp/docker-odoo-nginx/pull/29)
+This can be activated with the environment variable `NGX_ODOO_PDFCONTENT`
+
+
 
 ### HTTP accesses
 

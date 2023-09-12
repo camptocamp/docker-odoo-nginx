@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 1.9.0
+
+* Switch from alpine to debian bookworn
+* Change directory for base config
+
+
 ## 1.8.3
 
 * Fix json logs 

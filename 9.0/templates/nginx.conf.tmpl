@@ -76,8 +76,8 @@ http {
   proxy_busy_buffers_size 8k;
   proxy_max_temp_file_size  2048m;
   proxy_temp_file_write_size  64k;
-
-  proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=one:10m inactive=60m;
+  {{ $nginx_cache_size := getenv "NGX_CACHE_SIZE" }}
+  proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=one:{{ $nginx_cache_size }} inactive=60m;
 
   include /etc/nginx/proxy_headers.conf;
 
@@ -143,6 +143,14 @@ http {
       access_log off;
       log_not_found off;
     }
+
+   {{ if getenv "NGX_ODOO_PDFCONTENT" }}
+    location /documents/pdf_content {
+      proxy_pass http://{{ $odoo_host }}:8069;
+      max_ranges 0;
+      proxy_force_ranges on;
+    }
+   {{ end }}
 
     location ~* /[^/]+/static/ {
       try_files =404 @cached;
