@@ -6,7 +6,8 @@
 
 * Switch from alpine to debian bookworn
 * Change directory for base config
-
+* Add cache size parameter
+* Add pdfcontent parameter (see README.md)
 
 ## 1.8.3
 
