@@ -14,6 +14,12 @@ http {
   include /etc/nginx/mime.types;
   include /etc/nginx/http-access.conf;
   default_type  application/octet-stream;
+  
+  # Used for websocket
+  map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+  }
 
   sendfile on;
 
@@ -35,6 +41,7 @@ http {
    '"cache": "$upstream_cache_status", '
    '"referrer": "$http_referer", '
    '"agent": "$http_user_agent" }';
+
 
   #Default value '4 8k' is raising a '414 Request-URI Too Large' error
   #when '/web/webclient/translations/' is requested with a lot of module names
@@ -136,7 +143,16 @@ http {
 
     location /longpolling/im/poll { proxy_pass http://{{ $odoo_host }}:{{ $odoo_longpolling_port }}; }
     location /longpolling/poll { proxy_pass http://{{ $odoo_host }}:{{ $odoo_longpolling_port }}; }
-    location /websocket { proxy_pass http://{{ $odoo_host }}:{{ $odoo_longpolling_port }}; }
+    # used for websocket https://nginx.org/en/docs/http/websocket.html
+    location /websocket {
+        proxy_pass http://{{ $odoo_host }}:{{ $odoo_longpolling_port }};
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
 
     location /monitoring/status {
       proxy_pass http://{{ $odoo_host }}:8069;
