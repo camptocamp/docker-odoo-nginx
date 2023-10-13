@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.9.1
+
+* fix websocket for v16 
+
 ## 1.9.0
 
 * Switch from alpine to debian bookworn
