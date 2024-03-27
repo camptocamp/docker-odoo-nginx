@@ -95,7 +95,7 @@ http {
   {{ $odoo_longpolling_port := getenv "NGX_ODOO_LONGPOLLING_PORT" }}
   # Configuration for the server
   server {
-    listen 80 default;
+    listen 8000 default;
 
     client_max_body_size 1G;
 
