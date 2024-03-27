@@ -1,10 +1,11 @@
-FROM docker.io/nginx:1.25.1-bookworm
-MAINTAINER Camptocamp
+FROM nginxinc/nginx-unprivileged:bookworm 
 
-ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
+ADD --chown=nginx:nginx https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
-
+USER root
 RUN mkdir -p /etc/confd/{conf.d,templates}
+RUN chown nginx:nginx /etc/confd/{conf.d,templates}
+USER nginx
 COPY conf.d /etc/confd/conf.d
 COPY templates /etc/confd/templates
 COPY docker-entrypoint.sh /docker-entrypoint.sh
