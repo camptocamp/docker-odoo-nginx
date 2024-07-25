@@ -78,8 +78,8 @@ http {
   proxy_send_timeout      90;
   proxy_read_timeout      90;
 
-  proxy_buffers           32 4k;
-  proxy_buffer_size       1k;
+  proxy_buffers           32 8k;
+  proxy_buffer_size       4k;
   proxy_busy_buffers_size 8k;
   proxy_max_temp_file_size  2048m;
   proxy_temp_file_write_size  64k;
