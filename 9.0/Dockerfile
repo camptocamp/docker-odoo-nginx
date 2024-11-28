@@ -1,9 +1,8 @@
-FROM docker.io/nginx:1.25.1-bookworm
+FROM docker.io/nginx:1.27.3-bookworm
 MAINTAINER Camptocamp
-
+RUN apt-get update && apt-get remove curl -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
-
 RUN mkdir -p /etc/confd/{conf.d,templates}
 COPY conf.d /etc/confd/conf.d
 COPY templates /etc/confd/templates
