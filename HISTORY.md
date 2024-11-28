@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+
+## 1.10.0
+
+* Bump base to fix remote execution bug
+* Use github action for build
+* Remove curl from pacakges 
+
+## 1.9.2
+
+* Fix cache size for header, increased for new odoo images 
+
 ## 1.9.1
 
 * fix websocket for v16 
