@@ -1,21 +1,23 @@
 # HISTORY
 
 ## Unreleased
+## 1.10.1
 
+* Increase ressources and limit
 
 ## 1.10.0
 
 * Bump base to fix remote execution bug
 * Use github action for build
-* Remove curl from pacakges 
+* Remove curl from pacakges
 
 ## 1.9.2
 
-* Fix cache size for header, increased for new odoo images 
+* Fix cache size for header, increased for new odoo images
 
 ## 1.9.1
 
-* fix websocket for v16 
+* fix websocket for v16
 
 ## 1.9.0
 
@@ -26,19 +28,19 @@
 
 ## 1.8.3
 
-* Fix json logs 
+* Fix json logs
 
 ## 1.8.2
 
-* Fix longpolling env get 
+* Fix longpolling env get
 
 ## 1.8.1
 
-* add configurable longpolling port (default: 8072) 
+* add configurable longpolling port (default: 8072)
 
 ## 1.8.0
 
-* add websock location for odoo 16.0 
+* add websock location for odoo 16.0
 
 ## 1.6.0
 
