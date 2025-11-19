@@ -118,6 +118,11 @@ http {
       {{ if getenv "NGX_ODOO_SECURE_COOKIES" }}
       proxy_cookie_path / "/; Secure";
       {{end}}
+
+      proxy_set_header X-Forwarded-Host $host;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Real-IP $remote_addr;
     }
    {{ if getenv "NGX_ODOO_EXTRA_LOCATION" }}
     {{ $odoo_extra_location := getenv "NGX_ODOO_EXTRA_LOCATION" }}
@@ -148,10 +153,6 @@ http {
         proxy_pass http://{{ $odoo_host }}:{{ $odoo_longpolling_port }};
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection $connection_upgrade;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Real-IP $remote_addr;
     }
 
     location /monitoring/status {
