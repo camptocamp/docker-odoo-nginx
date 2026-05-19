@@ -27,6 +27,7 @@ http {
 
   access_log off;
   log_format json_combined escape=json '{ "timestamp": "$time_iso8601", '
+   '"timestamp_ms": $msec, '
    '"clientip": "$remote_addr", '
    '"host": "$host", '
    '"auth": "$remote_user", '
