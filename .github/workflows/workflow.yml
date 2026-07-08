@@ -33,7 +33,7 @@ jobs:
       - name: Build Image Odoo Nginx
         uses: docker/build-push-action@v2
         with:
-          context: ./9.0
+          context: ./nginx
           platforms: linux/amd64
           push: true
           tags: ghcr.io/${{ github.repository }}:${{ env.RELEASE_VERSION }}
