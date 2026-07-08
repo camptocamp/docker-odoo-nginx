@@ -117,7 +117,7 @@ http {
       proxy_busy_buffers_size 64k;
       proxy_intercept_errors on;
       {{ if getenv "NGX_ODOO_SECURE_COOKIES" }}
-      proxy_cookie_path / "/; Secure";
+      proxy_cookie_flags session_id samesite=lax secure;
       {{end}}
     }
    {{ if getenv "NGX_ODOO_EXTRA_LOCATION" }}
