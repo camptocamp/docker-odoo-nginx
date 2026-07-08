@@ -1,6 +1,12 @@
 # HISTORY
 
 ## Unreleased
+
+* update nginx image
+* update Debian version (bookworm -> trixie)
+* update secure cookie implementation
+
+
 ## 1.10.1
 
 * Increase ressources and limit
