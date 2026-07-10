@@ -1,6 +1,6 @@
 # HISTORY
 
-## Unreleased
+## 1.11.0 (2026-07-10)
 
 * update nginx image
 * update Debian version (bookworm -> trixie)
