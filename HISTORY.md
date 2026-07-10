@@ -5,6 +5,7 @@
 * update nginx image
 * update Debian version (bookworm -> trixie)
 * update secure cookie implementation
+* Add support for fs_attachemnt_s3 / fs_attachment_azure
 
 
 ## 1.10.1

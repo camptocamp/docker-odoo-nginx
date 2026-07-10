@@ -174,6 +174,20 @@ http {
       try_files =404 @cached;
     }
 
+    # this section is for use in conjunction with fs_attachment_azure or fs_attachement_s3
+    # see the README in https://github.com/OCA/storage/tree/18.0/fs_attachment_s3 for more information.
+    location ~ ^/fs_x_sendfile/(.*?)/(.*?)/(.*) {
+        internal;
+        set $url_scheme $1;
+        set $url_host $2;
+        set $url_path $3;
+        set $url $url_scheme://$url_host/$url_path;
+
+        proxy_pass $url$is_args$args;
+        proxy_set_header Host $url_host;
+        proxy_ssl_server_name on;
+    }
+
     # warning: /web/content reads ir.attachment, it would not be safe to
     # cache other files than .js / .css which can depend on users rights
     location ~* ^/web/content/.+\.(js|css)$ {
