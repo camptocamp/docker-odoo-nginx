@@ -23,6 +23,21 @@ By default, nginx is configured to proxy cahce of 10m.
 This can be changed with the environment variable `NGX_CACHE_SIZE`.
 
 
+### Resolver
+
+By default, nginx is configured to use the Docker embedded DNS resolver
+`127.0.0.11` with the option `ipv6=off`.
+
+This can be changed with the environment variable `NGINX_RESOLVER`:
+
+* if unset, the default value `127.0.0.11` is used.
+* if set to `NO`, no `resolver` directive is added to the configuration.
+* otherwise, the provided value is used as the resolver address.
+
+The resolver options can be changed with the environment variable
+`NGINX_RESOLVER_OPTIONS`. If unset, the default value `ipv6=off` is used.
+This variable is ignored when `NGINX_RESOLVER` is set to `NO`.
+
 ### Odoo long polling port 
 
 By default, nginx is configured to root longpolling url on port 8072.

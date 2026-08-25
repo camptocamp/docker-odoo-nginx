@@ -3,13 +3,15 @@
 ## Unreleased
 
 * Fix x-forwarded-for
+* Add support for `fs_attachment_s3` / `fs_attachment_azure`
+* Add support for configurable resolver via `NGINX_RESOLVER` and
+  `NGINX_RESOLVER_OPTIONS` environment variables
 
 ## 1.11.0 (2026-07-10)
 
 * update nginx image
 * update Debian version (bookworm -> trixie)
 * update secure cookie implementation
-* Add support for fs_attachment_s3 / fs_attachment_azure
 
 
 ## 1.10.1
