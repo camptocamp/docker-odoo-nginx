@@ -80,3 +80,20 @@ vrenaville:$apr1$lDdea9Jt$DAJQG0W1s4JEuuVQQxiur.
 
 If you want all cookies to be have the Secure attribute, then you can set the
 environment variable NGX_ODOO_SECURE_COOKIES to 1.
+
+### Real IP from proxy
+
+When nginx is behind a proxy (such as Traefik in a Kubernetes cluster), you need to configure
+which source addresses to trust for the X-Forwarded-For header. This is required for nginx
+to correctly identify the client's real IP address.
+
+This can be set with the environment variable `NGX_REAL_IP_FROM` using a CIDR network range:
+
+```
+NGX_REAL_IP_FROM=10.0.0.0/8
+```
+
+For Kubernetes clusters, use the service network CIDR range. If not set, the real IP detection
+is disabled and the connection source IP will be used instead. This setting is optional.
+
+See also: https://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from
