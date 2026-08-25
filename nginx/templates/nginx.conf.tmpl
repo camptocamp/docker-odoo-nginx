@@ -99,6 +99,12 @@ http {
   server {
     listen 80 default;
 
+    {{ $nginx_resolver := getenv "NGINX_RESOLVER" }}
+    {{ if ne $nginx_resolver "NO" }}
+    {{ $nginx_resolver_options := getenv "NGINX_RESOLVER_OPTIONS" }}
+    resolver {{ if $nginx_resolver }}{{ $nginx_resolver }}{{ else }}127.0.0.11{{ end }} {{ if $nginx_resolver_options }}{{ $nginx_resolver_options }}{{ else }}ipv6=off{{ end }};
+    {{ end }}
+
     client_max_body_size 1G;
 
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
