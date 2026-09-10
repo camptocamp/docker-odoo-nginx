@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Use `127.0.0.1` instead of `localhost` for the proxy_pass upstream when
+  `NGX_ODOO_HOST=localhost`, to avoid a failed IPv6 connection attempt on
+  every request
 * Fix x-forwarded-for
 
 ## 1.11.0 (2026-07-10)
