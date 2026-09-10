@@ -25,12 +25,13 @@ This can be changed with the environment variable `NGX_CACHE_SIZE`.
 
 ### Resolver
 
-By default, nginx is configured to use the Docker embedded DNS resolver
-`127.0.0.11` with the option `ipv6=off`.
+By default, the `resolver` directive uses the nameserver(s) found in the
+container's `/etc/resolv.conf` (the Docker embedded DNS `127.0.0.11` under
+docker-compose, the cluster DNS under Kubernetes), with the option `ipv6=off`.
 
 This can be changed with the environment variable `NGINX_RESOLVER`:
 
-* if unset, the default value `127.0.0.11` is used.
+* if unset, the nameserver(s) from `/etc/resolv.conf` are used.
 * if set to `NO`, no `resolver` directive is added to the configuration.
 * otherwise, the provided value is used as the resolver address.
 

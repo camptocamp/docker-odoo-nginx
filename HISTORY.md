@@ -4,7 +4,8 @@
 
 * Fix x-forwarded-for
 * Add support for `fs_attachment_s3` / `fs_attachment_azure`
-* Add support for configurable resolver via `NGINX_RESOLVER` and
+* Add a `resolver` directive, defaulting to the container's nameservers
+  (`/etc/resolv.conf`), configurable via `NGINX_RESOLVER` and
   `NGINX_RESOLVER_OPTIONS` environment variables
 
 ## 1.11.0 (2026-07-10)
