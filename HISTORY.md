@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Use `127.0.0.1` instead of `localhost` for the proxy_pass upstream when
+  `NGX_ODOO_HOST=localhost`, to avoid a failed IPv6 connection attempt on
+  every request
 * Fix x-forwarded-for
 * Add support for `fs_attachment_s3` / `fs_attachment_azure`
 * Add a `resolver` directive, defaulting to the container's nameservers
