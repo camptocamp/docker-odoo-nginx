@@ -1,4 +1,4 @@
-FROM docker.io/nginx:1.31.2-trixie
+FROM docker.io/nginx:1.31.5-trixie
 LABEL maintainer="Camptocamp"
 RUN apt-get update && apt-get remove curl -y && apt-get clean && rm -rf /var/lib/apt/lists/*
 ADD https://github.com/kelseyhightower/confd/releases/download/v0.11.0/confd-0.11.0-linux-amd64 /usr/local/bin/confd

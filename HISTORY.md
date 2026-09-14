@@ -2,14 +2,18 @@
 
 ## Unreleased
 
-* Use `127.0.0.1` instead of `localhost` for the proxy_pass upstream when
+
+# 1.12.0 (2026-09-14)
+
+* Use `127.0.0.1` instead of `localhost` for the `proxy_pass` upstream when
   `NGX_ODOO_HOST=localhost`, to avoid a failed IPv6 connection attempt on
   every request
-* Fix x-forwarded-for
+* Fix `x-forwarded-for`
 * Add support for `fs_attachment_s3` / `fs_attachment_azure`
 * Add a `resolver` directive, defaulting to the container's nameservers
   (`/etc/resolv.conf`), configurable via `NGINX_RESOLVER` and
   `NGINX_RESOLVER_OPTIONS` environment variables
+* Bump base image to 1.31.5-trixie
 
 ## 1.11.0 (2026-07-10)
 
