@@ -1,7 +1,10 @@
 # HISTORY
 
-## Unreleased
+## Unrelease
 
+# 1.12.1 (2026-10-23)
+
+* fix x-forwarded for (wrong protocol was being used)
 
 # 1.12.0 (2026-09-14)
 
